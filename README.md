@@ -1,2 +1,3 @@
-# FP-app
- Final project app
+# Application for the final project
+ 
+ -Alphabet Training application
