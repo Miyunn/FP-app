@@ -194,7 +194,7 @@ model.compile(optimizer=tensorflow.keras.optimizers.Adadelta(learning_rate=0.1),
 
 
 print("Training started")
-model.fit(img_train, lbl_train, epochs=10, batch_size=1, validation_data=(img_test, lbl_test))
+model.fit(img_train, lbl_train, epochs=20, batch_size=1, validation_data=(img_test, lbl_test))
 
 
 # In[ ]:
