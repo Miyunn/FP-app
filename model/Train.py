@@ -12,19 +12,18 @@ from tensorflow.keras.utils import to_categorical
 import matplotlib.pyplot as plt
 import numpy as np
 import cv2
+import os
 
 
 # In[2]:
 
 
-import os
-
 path = "dataset/train/"
 path_test = "dataset/test/"
 files = os.listdir(path)[:20]
 files_test = os.listdir(path_test)[:20]
-print("Detected train classes : ",files)
-print("Detected test classes : ",files_test)
+#print("Detected train classes : ",files)
+#print("Detected test classes : ",files_test)
 
 
 classes={'1':0, '2':1, '3':2, '4':3, '5':4, '6':5, '7':6, '8':7, '9':8, '10':9, '11':10, '12':11, '25':12, '38':13, '51':14,
@@ -67,6 +66,7 @@ print("Test Data imported")
 
 
 print("Converting list to array type")
+
 img_train = np.array(img_train)
 lbl_train = np.array(lbl_train)
 print("Train data type")
@@ -104,7 +104,7 @@ print(img_train.shape)
 print(img_test.shape)
 
 
-# In[10]:
+# In[9]:
 
 
 print("Changing lables to categorical")
@@ -112,11 +112,25 @@ lbl_train = to_categorical(lbl_train, 20)
 lbl_test = to_categorical(lbl_test, 20)
 
 
-# In[12]:
+# In[10]:
 
 
 print(lbl_train[2372])
 plt.imshow(img_train[2372], cmap='gray')
+
+
+# In[11]:
+
+
+print(np.max(img_train[0]))
+print(np.min(img_train[0]))
+
+
+# In[12]:
+
+
+img_train = img_train / 255
+img_test = img_test / 255
 
 
 # In[13]:
@@ -129,25 +143,11 @@ print(np.min(img_train[0]))
 # In[14]:
 
 
-img_train = img_train / 255
-img_test = img_test / 255
-
-
-# In[15]:
-
-
-print(np.max(img_train[0]))
-print(np.min(img_train[0]))
-
-
-# In[16]:
-
-
 print(type(img_train[0][0][0][0]))
 print(type(img_test[0][0][0][0]))
 
 
-# In[17]:
+# In[15]:
 
 
 print("Convering to type to float32")
@@ -155,35 +155,36 @@ img_train = img_train.astype('float32')
 img_test = img_test.astype('float32')
 
 
-# In[18]:
+# In[16]:
 
 
 print(type(img_train[0][0][0][0]))
 
 
-# In[22]:
+# In[21]:
 
 
 model = Sequential()
-model = Sequential()
-
-model.add(Conv2D(filters=128, kernel_size=(3, 3), activation='relu', input_shape=(80,80,1)))
-model.add(MaxPool2D(pool_size=(2, 2), strides=2))
-model.add(Conv2D(filters=256, kernel_size=(3, 3), activation='relu', padding = 'same'))
-model.add(MaxPool2D(pool_size=(2, 2), strides=2))
-model.add(Conv2D(filters=512, kernel_size=(3, 3), activation='relu', padding = 'valid'))
-model.add(MaxPool2D(pool_size=(2, 2), strides=2))
+model.add(Conv2D(256, kernel_size=5, activation='relu'))
+model.add(MaxPool2D(pool_size=2))
+model.add(Dropout(0.3))
+model.add(Conv2D(512, kernel_size=5, activation='relu'))
+model.add(MaxPool2D(pool_size=2))
+model.add(Dropout(0.3))
+model.add(Conv2D(1024, kernel_size=5, activation='relu'))
+model.add(MaxPool2D(pool_size=2))
+model.add(Dropout(0.3))
 model.add(Flatten())
-model.add(Dense(64,activation ="relu"))
-model.add(Dense(128,activation ="relu"))
-model.add(Dense(20,activation ="softmax"))
+#model.add(Dense(128, activation='relu'))
+model.add(Dense(256, activation='relu'))
+model.add(Dense(20, activation='softmax'))
+
+
 
 print("Model loaded")
 
-print("Model loaded")
 
-
-# In[23]:
+# In[22]:
 
 
 model.compile(optimizer=tensorflow.keras.optimizers.Adadelta(learning_rate=0.1),
@@ -193,8 +194,8 @@ model.compile(optimizer=tensorflow.keras.optimizers.Adadelta(learning_rate=0.1),
 # In[24]:
 
 
-print("Training started")
-model.fit(img_train, lbl_train, epochs=20, batch_size=1, validation_data=(img_test, lbl_test))
+print("Training....")
+model.fit(img_train, lbl_train, epochs=10, batch_size=10, validation_data=(img_test, lbl_test))
 
 
 # In[ ]:
@@ -213,7 +214,7 @@ print('Test Accuracy :',score[1])
 # In[ ]:
 
 
-model.save('test/model_smaller.h5')
+model.save('test/model.h5')
 print("Model saved")
 
 
