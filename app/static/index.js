@@ -122,5 +122,6 @@ function addDataAction() {
 function practiceAction() {
   let pixels = getPixels()
   document.getElementById("pixels").value = pixels
+
   document.getElementById("practice-form").submit()
 }

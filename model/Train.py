@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
 
 print("Importing libraries")
 import tensorflow.keras
@@ -9,6 +14,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 import os
+
+
+# In[2]:
+
 
 print("Reading folders and creating classes")
 
@@ -25,6 +34,9 @@ classes={'1':0, '2':1, '3':2, '4':3, '5':4, '6':5, '7':6, '8':7, '9':8, '10':9, 
         '208':27, '250':28, '264':29, '274':30}
 
 
+# In[3]:
+
+
 print("Creating train data list")
 img_train=[]
 lbl_train=[]
@@ -37,6 +49,10 @@ for cl in classes:
         lbl_train.append(classes[cl])
 print("Train data list imported")  
 
+
+# In[4]:
+
+
 print("Creating test data list")
 img_test=[]
 lbl_test=[]
@@ -48,6 +64,9 @@ for cl in classes:
         img_test.append(img)
         lbl_test.append(classes[cl])
 print("Test Data imported")
+
+
+# In[5]:
 
 
 print("Converting list to array type")
@@ -66,8 +85,14 @@ print(type(img_test))
 print(type(lbl_test))
 
 
+# In[6]:
+
+
 #plt.imshow(img_train[257], cmap='gray')
 #print(lbl_train[257])
+
+
+# In[7]:
 
 
 print("Reshapping Train and Test data")
@@ -75,34 +100,73 @@ img_train = img_train.reshape(img_train.shape[0], img_train.shape[1], img_train.
 img_test = img_test.reshape(img_test.shape[0], img_test.shape[1], img_test.shape[2], 1)
 
 
+# In[8]:
+
+
 print("Train and test data shapes")
 print(img_train.shape)
 print(img_test.shape)
 
 
-print("Changing lables to categorical")
-lbl_train = to_categorical(lbl_train, 31)
-lbl_test = to_categorical(lbl_test, 31)
+# In[9]:
+
+
+#print("Changing lables to categorical")
+#lbl_train = to_categorical(lbl_train, 31)
+#lbl_test = to_categorical(lbl_test, 31)
+
+
+# In[10]:
+
+
+#print(lbl_train[2372])
+#plt.imshow(img_train[2372], cmap='gray')
+
+
+# In[11]:
+
 
 #print(np.max(img_train[0]))
 #print(np.min(img_train[0]))
+
+
+# In[12]:
+
 
 img_train = img_train / 255
 img_test = img_test / 255
 
+
+# In[13]:
+
+
 #print(np.max(img_train[0]))
 #print(np.min(img_train[0]))
 
+
+# In[14]:
+
+
 #print(type(img_train[0][0][0][0]))
 #print(type(img_test[0][0][0][0]))
+
+
+# In[15]:
+
 
 #print("Convering to type to float32")
 img_train = img_train.astype('float32')
 img_test = img_test.astype('float32')
 
 
+# In[16]:
+
+
 print("Dimentions of train data")
 print(type(img_train[0][0][0][0]))
+
+
+# In[17]:
 
 
 model = Sequential()
@@ -123,25 +187,41 @@ model.add(Dense(31, activation='softmax'))
 print("Model loaded")
 
 
+# In[18]:
+
+
 model.compile(optimizer=tensorflow.keras.optimizers.Adadelta(learning_rate=0.1),
-             loss=tensorflow.keras.losses.categorical_crossentropy, metrics=['accuracy'])
+             loss=tensorflow.keras.losses.sparse_categorical_crossentropy, metrics=['accuracy'])
+
+
+# In[19]:
 
 
 print("Training....")
-model.fit(img_train, lbl_train, epochs=25, batch_size=10, validation_data=(img_test, lbl_test))
+model.fit(img_train, lbl_train, epochs=1, batch_size=1, validation_data=(img_test, lbl_test))
+
+
+# In[ ]:
 
 
 score = model.evaluate(img_test, lbl_test)
+
+
+# In[ ]:
 
 
 print('Test Loss : ', score[0])
 print('Test Accuracy :',score[1])
 
 
+# In[ ]:
+
 
 model.save('test/model.h5')
 print("Model saved")
 
+
+# In[ ]:
 
 
 
