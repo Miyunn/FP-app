@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[4]:
 
 
-print("Importing libraries")
 import tensorflow.keras
-from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPool2D, Flatten, Dense, Dropout
 from tensorflow.keras.utils import to_categorical
@@ -19,25 +17,23 @@ import os
 # In[2]:
 
 
-print("Reading folders and creating classes")
-
 path = "dataset/train/"
 path_test = "dataset/test/"
 files = os.listdir(path)[:31]
 files_test = os.listdir(path_test)[:31]
-print("Detected train classes : ",files)
-print("Detected test classes : ",files_test)
-
+#print("Detected train classes : ",files)
+#print("Detected test classes : ",files_test)
+print("Detected classes : ",files)
 
 classes={'1':0, '2':1, '3':2, '4':3, '5':4, '6':5, '7':6, '8':7, '9':8, '10':9, '11':10, '12':11, '25':12, '38':13, '51':14,
         '64':15, '77':16, '90':17, '93':18, '105':19, '120':20, '134':21, '149':22, '164':23, '179':24, '190':25, '198':26,
-        '208':27, '250':28, '264':29, '274':30}
+        '208':27, '250':28, '264':29, '274':30 }
 
 
-# In[3]:
+# In[5]:
 
 
-print("Creating train data list")
+print("Importing train data...")
 img_train=[]
 lbl_train=[]
 
@@ -47,13 +43,12 @@ for cl in classes:
         img = cv2.imread(pth+"/"+img_name,0)
         img_train.append(img)
         lbl_train.append(classes[cl])
-print("Train data list imported")  
 
 
-# In[4]:
+# In[6]:
 
 
-print("Creating test data list")
+print("Importing test data...")
 img_test=[]
 lbl_test=[]
 
@@ -63,52 +58,43 @@ for cl in classes:
         img = cv2.imread(pth+"/"+img_name,0)
         img_test.append(img)
         lbl_test.append(classes[cl])
-print("Test Data imported")
 
 
-# In[5]:
+# In[12]:
 
 
-print("Converting list to array type")
+print("converting to np array")
 
 img_train = np.array(img_train)
 lbl_train = np.array(lbl_train)
-print("Train data type")
-print(type(img_train))
-print(type(lbl_train))
 
 img_test = np.array(img_test)
 lbl_test = np.array(lbl_test)
 
-print("Train data type")
-print(type(img_test))
-print(type(lbl_test))
+
+# In[13]:
 
 
-# In[6]:
+plt.imshow(img_train[257], cmap='gray')
+print(lbl_train[257])
 
 
-#plt.imshow(img_train[257], cmap='gray')
-#print(lbl_train[257])
+# In[16]:
 
 
-# In[7]:
-
-
-print("Reshapping Train and Test data")
+print("Reshaping")
 img_train = img_train.reshape(img_train.shape[0], img_train.shape[1], img_train.shape[2], 1)
 img_test = img_test.reshape(img_test.shape[0], img_test.shape[1], img_test.shape[2], 1)
 
 
-# In[8]:
+# In[18]:
 
 
-print("Train and test data shapes")
-print(img_train.shape)
-print(img_test.shape)
+print("Train shape", img_train.shape)
+print("Test shape", img_test.shape)
 
 
-# In[9]:
+# In[ ]:
 
 
 #print("Changing lables to categorical")
@@ -116,57 +102,40 @@ print(img_test.shape)
 #lbl_test = to_categorical(lbl_test, 31)
 
 
-# In[10]:
+# In[19]:
 
 
-#print(lbl_train[2372])
-#plt.imshow(img_train[2372], cmap='gray')
+print(lbl_train[472])
+plt.imshow(img_train[472], cmap='gray')
 
 
-# In[11]:
+# In[21]:
 
 
-#print(np.max(img_train[0]))
-#print(np.min(img_train[0]))
-
-
-# In[12]:
-
-
+print("Converting to binary")
 img_train = img_train / 255
 img_test = img_test / 255
 
 
-# In[13]:
+# In[25]:
 
 
-#print(np.max(img_train[0]))
-#print(np.min(img_train[0]))
-
-
-# In[14]:
-
-
-#print(type(img_train[0][0][0][0]))
-#print(type(img_test[0][0][0][0]))
-
-
-# In[15]:
-
-
-#print("Convering to type to float32")
+print("Convering to float32")
 img_train = img_train.astype('float32')
 img_test = img_test.astype('float32')
 
 
-# In[16]:
+# In[32]:
 
 
-print("Dimentions of train data")
-print(type(img_train[0][0][0][0]))
+epochs = 25
+batch = 1
+
+print("Epochs : ",epochs)
+print("Batch size : ",batch)
 
 
-# In[17]:
+# In[33]:
 
 
 model = Sequential()
@@ -184,21 +153,19 @@ model.add(Flatten())
 model.add(Dense(256, activation='relu'))
 model.add(Dense(31, activation='softmax'))
 
-print("Model loaded")
 
-
-# In[18]:
+# In[34]:
 
 
 model.compile(optimizer=tensorflow.keras.optimizers.Adadelta(learning_rate=0.1),
              loss=tensorflow.keras.losses.sparse_categorical_crossentropy, metrics=['accuracy'])
 
 
-# In[19]:
+# In[35]:
 
 
 print("Training....")
-model.fit(img_train, lbl_train, epochs=1, batch_size=1, validation_data=(img_test, lbl_test))
+model.fit(img_train, lbl_train, epochs=epochs, batch_size=batch, validation_data=(img_test, lbl_test))
 
 
 # In[ ]:
@@ -210,14 +177,14 @@ score = model.evaluate(img_test, lbl_test)
 # In[ ]:
 
 
-print('Test Loss : ', score[0])
-print('Test Accuracy :',score[1])
+print('Loss : ', score[0])
+print('Accuracy :',score[1])
 
 
 # In[ ]:
 
 
-model.save('test/model.h5')
+model.save('model_50x50.h5')
 print("Model saved")
 
 
