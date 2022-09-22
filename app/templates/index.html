@@ -1,18 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <div class="main-container">
-    <h1 class="title">alphabet quiz</h1>
-    <div>
-      <div class="box">
-        <a class="button is-info" href="/practice">practice</a>
-        <p>practice writing the alphabet</p>
-      </div>
-      <div class="box">
-        <a class="button is-info" href="/add-data">add data</a>
-        <p>improve the model by adding data</p>
-      </div>
+    <div class="header">
+        <img class="nav-logo" src="{{ url_for('static', filename='logo.png') }}" alt="Akuru">
     </div>
-  </div>
+
+    <div class="main-container">
+        <div class="btn">
+            <a class="btn-main" href="/practice">Practice</a>
+        </div>
+
+        <div class="improve">
+            <a href="/add-data">
+                <p>Improve Model</p>
+            </a>
+        </div>
+
+        <div class="git">
+            <img class="git-logo" src="{{ url_for('static', filename='git.png') }}" alt="Github">
+        </div>
+   
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Developed By Kavinthe Perera</p>
+    </div>
 
 {% endblock %}
