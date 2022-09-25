@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    font-family: poppins;
+}
+
+body {
+    background: #000
+}
+
+h2{
+    font-size: 22px;
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 6rem;
+    background-color: #ffffff;
+}
+
+.container{
+    height: 90vh;
+    display: grid;
+    place-items: center;
+}
+
+.menu{
+    color: #fff;
+}
+
+.title{
+    text-align: center;
+    line-height: 2rem;
+}
+
+.btn_practice{
+    margin-top: 3rem;
+    width: 464px;
+    padding: 0.75rem;
+    background: #B578F1;
+    border-radius: 146px;
+    text-align: center;
+}
+
+.btn_practice:hover{
+    background: #fff;
+    color: #1D1D1D;
+    transition: 400ms;
+}
+
+.btn__improve{
+    margin-top: 3rem;
+    align-items: center;
+    text-align: center;
+    
+    color: #BDBDBD;
+}
+
+.btn__improve p:hover{
+    color: #00ffff;
+    transition: 500ms;
+}
+
+.btn__github{
+    margin-top: 2rem;
+    align-items: center;
+    text-align: center;
+}
+
+.btn__github img{
+    opacity: 70%;
+    max-height: 35px;
+}
+
+.btn__github img:hover{
+    opacity: 100%;
+    transition: 500ms;
+}
+
+.error{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 55%;
+}
+
+.error img{
+    height: 200px;
+ 
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: .5rem 0rem;
+
+    text-align: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+
+    background-color: #1D1D1D;
+    color: #8A8A8A;
+}
+
+@media screen and (max-width: 700px) {
+
+  }
+  
+@media screen and (max-width: 550px) {
+
+  }

@@ -1,30 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="header">
-        <img class="nav-logo" src="{{ url_for('static', filename='logo.png') }}" alt="Akuru">
+<header>
+    <p>WTF do I put here?</p>
+</header>
+
+<div class="container">
+<div class="menu">
+
+    <div class="title">
+        <h2>Practice Sinhala Handwritting with AI</h2>
     </div>
 
-    <div class="main-container">
-        <div class="btn">
-            <a class="btn-main" href="/practice">Practice</a>
-        </div>
 
-        <div class="improve">
-            <a href="/add-data">
-                <p>Improve Model</p>
-            </a>
-        </div>
+    <div class="btn_practice">
+        <a href="/practice">
+            <p>Practice</p>
+        </a>
+    </div>
 
-        <div class="git">
-            <img class="git-logo" src="{{ url_for('static', filename='git.png') }}" alt="Github">
-        </div>
+    <div class="btn__improve">
+        <a href="/add-data">
+            <p>Improve Model</p>
+        </a>
+    </div>
+
+    <div class="btn__github">
+        <a href="https://github.com/Miyunn/FP-app">
+            <img src="{{ url_for('static', filename='git.png') }}" alt="Github"/>
+        </a>
+    </div>
+</div>
    
-        </div>
-    </div>
-    
-    <div class="footer">
-        <p>Developed By Kavinthe Perera</p>
-    </div>
+<footer>
+    <p>Desgined by Kavinthe Perera</p>
+</footer>
 
 {% endblock %}

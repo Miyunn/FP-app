@@ -1,8 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <div class="main-container">
-    <h1 class="title">oops! something went wrong...</h1>
+<header>
+  <p>Header here</p>
+</header>
+
+<div class="container">
+<div class="menu">
+  <div class="error">
+      <img src="{{ url_for('static', filename='error.png') }}" alt="Error!">
   </div>
+  
+  <div class="title">
+      <h2>Oops!</h2>
+      <h3>Something Went Wrong</h3>
+      <p>There has been an error while establishing connection with the server</p>
+  </div>
+</div>
+</div>
+
+<footer>
+  <p>Desgined by Kavinthe Perera</p>
+</footer>
 
 {% endblock %}
