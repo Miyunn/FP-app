@@ -18,13 +18,17 @@ ENCODER = bidict({
 
 
 app = Flask(__name__)
-app.secret_key = 'alphabet_quiz'
+app.secret_key = 'sinhala_alphabet_practice'
 
 
 @app.route('/')
 def index():
     session.clear()
     return render_template("index.html")
+
+@app.route('/about')
+def about():
+    return render_template("about.html")    
 
 @app.route('/add-data', methods=['GET'])
 def add_data_get():

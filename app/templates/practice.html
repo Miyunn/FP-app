@@ -22,14 +22,17 @@
 <div class="container">
 <div class="menu">
   <h2 class="title">Practice</h2>
+  
   {% if correct %}
     {% if correct == 'yes' %}
       <p style="font-size: 3rem;">✔</p>
+      
     {% else %}
       <p style="font-size: 3rem;">❌</p>  
   
     {% endif %}
-  {% endif %}
+    {% endif %}
+    
   <p>Next question</p>
   <div>
     <canvas id="canvas" width="200" height="200"></canvas>
@@ -37,7 +40,7 @@
   
   <div>
     <p style="margin-top: 0.5rem;">Write letter</p>
-    <p style="font-size: 3rem; text-align: center;"> "{{letter.lower()}}"</p>
+    <p style="font-size: 3rem; text-align: center;"> "{{letter}}"</p>
   </div>
   
   <div>
