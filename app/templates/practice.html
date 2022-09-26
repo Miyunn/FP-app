@@ -2,28 +2,44 @@
 {% block content %}
 
 <header>
-  <p>Header Place Holder (Until I figure out what to put here)</p>
+  <div>
+    <img class="nav__icon" src="{{ url_for('static', filename='icon.png') }}" alt="Icon">
+  </div>
+  <div class="nav__list">
+    <ul>
+      <li><a href="/">Home</a> </li>
+      <li><a href="#">About</a></li>
+      <li><a href="https://github.com/Miyunn/Sinhala-Alphabet-Practice">Project</a></li>
+    </ul>
+  </div>
+  <div>
+    <a href="/">
+      <img class="nav__icon" src="{{ url_for('static', filename='back.png') }}" alt="Icon">
+    </a>
+  </div>
 </header>
 
 <div class="container">
 <div class="menu">
-  <div>
-    <a href="/" class="button is-text">&lt; return to main menu</a>
-  </div>
-  <h1 class="title">practice</h1>
+  <h2 class="title">Practice</h2>
+  {% if correct %}
+    {% if correct == 'yes' %}
+      <p style="font-size: 3rem;">✔</p>
+    {% else %}
+      <p style="font-size: 3rem;">❌</p>  
+  
+    {% endif %}
+  {% endif %}
+  <p>Next question</p>
   <div>
     <canvas id="canvas" width="200" height="200"></canvas>
   </div>
-  <div style="padding: 1rem;">
-    {% if correct %}
-      {% if correct == 'yes' %}
-        <p style="font-size: 0.75rem;">Correct! next question:</p>
-      {% else %}
-        <p style="font-size: 0.75rem;">Incorrect! next question:</p>  
-      {% endif %}
-    {% endif %}
-    <p style="margin-top: 0.5rem;">Write letter "{{letter.lower()}}"</p>
+  
+  <div>
+    <p style="margin-top: 0.5rem;">Write letter</p>
+    <p style="font-size: 3rem; text-align: center;"> "{{letter.lower()}}"</p>
   </div>
+  
   <div>
     <form id="practice-form" action="practice" method="POST">
       <input id="pixels" name="pixels" type="hidden" />
@@ -32,6 +48,7 @@
       <button type="button" class="button is-info" onclick="resetCanvas()">clear</button>
     </form>
   </div>
+
 </div>
 </div>
 

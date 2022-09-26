@@ -4,6 +4,7 @@
     margin: 0;
     scroll-behavior: smooth;
     font-family: poppins;
+    list-style: none;
 }
 
 body {
@@ -23,8 +24,24 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 6rem;
+    padding: 0 6rem;
     background-color: #ffffff;
+}
+
+.nav__icon{
+    max-height: 40px;
+    padding-top: 0.5rem;
+}
+
+.nav__list li{
+    display: inline;
+    padding: 0 1rem;
+}
+
+
+.nav__list a:hover{
+    color: #04bdbd;
+    transition: 200ms;
 }
 
 .container{
@@ -35,6 +52,7 @@ header{
 
 .menu{
     color: #fff;
+    text-align: center;
 }
 
 .title{
@@ -54,7 +72,7 @@ header{
 .btn_practice:hover{
     background: #fff;
     color: #1D1D1D;
-    transition: 400ms;
+    transition: 300ms;
 }
 
 .btn__improve{
@@ -65,12 +83,12 @@ header{
     color: #BDBDBD;
 }
 
-.btn__improve p:hover{
+.btn__improve p:hover {
     color: #00ffff;
-    transition: 500ms;
+    transition: 300ms;
 }
 
-.btn__github{
+.btn__github {
     margin-top: 2rem;
     align-items: center;
     text-align: center;
@@ -90,21 +108,34 @@ header{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 55%;
+    width: 60%;
 }
 
 .error img{
     height: 200px;
- 
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box p {
+    margin-top: 1rem;
+}
+
+#canvas {
+    background-color: white;
+    border: 1px solid gray;
 }
 
 footer{
     position: fixed;
-    left: 0;
     bottom: 0;
     width: 100%;
-    padding: .5rem 0rem;
-
+    padding: 1rem 0rem;
     text-align: center;
     font-weight: 400;
     font-size: 12px;

@@ -2,7 +2,21 @@
 {% block content %}
 
 <header>
-    <p>Header Place Holder (Until I figure out what to put here)</p>
+    <div>
+        <img class="nav__icon" src="{{ url_for('static', filename='icon.png') }}" alt="Icon">
+    </div>
+    
+    <div class="nav__list">
+        <ul>
+            <li><a href="/">Home</a> </li>
+            <li><a href="#">About</a></li>
+            <li><a href="https://github.com/Miyunn/Sinhala-Alphabet-Practice">Project</a></li>
+        </ul>
+    </div>
+    
+    <a href="/">
+        <img class="nav__icon" src="{{ url_for('static', filename='back1.png') }}" alt="Icon">
+      </a>
 </header>
 
 <div class="container">
