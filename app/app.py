@@ -74,7 +74,7 @@ def practice_post():
         pixels = pixels.split(',')
         img = np.array(pixels).astype(float).reshape(1, 50, 50, 1)
 
-        model = keras.models.load_model('model_50x50.h5')
+        model = keras.models.load_model('model.h5')
 
         pred_letter = np.argmax(model.predict(img), axis=-1)
         pred_letter = ENCODER.inverse[pred_letter[0]]
