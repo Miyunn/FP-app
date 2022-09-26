@@ -184,7 +184,7 @@ print('Accuracy :',score[1])
 # In[ ]:
 
 
-model.save('model_50x50.h5')
+model.save('model.h5')
 print("Model saved")
 
 
