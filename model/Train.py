@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[1]:
 
 
 import tensorflow.keras
@@ -30,7 +30,7 @@ classes={'1':0, '2':1, '3':2, '4':3, '5':4, '6':5, '7':6, '8':7, '9':8, '10':9, 
         '208':27, '250':28, '264':29, '274':30 }
 
 
-# In[5]:
+# In[3]:
 
 
 print("Importing train data...")
@@ -45,7 +45,7 @@ for cl in classes:
         lbl_train.append(classes[cl])
 
 
-# In[6]:
+# In[4]:
 
 
 print("Importing test data...")
@@ -60,7 +60,7 @@ for cl in classes:
         lbl_test.append(classes[cl])
 
 
-# In[12]:
+# In[5]:
 
 
 print("converting to np array")
@@ -72,14 +72,21 @@ img_test = np.array(img_test)
 lbl_test = np.array(lbl_test)
 
 
-# In[13]:
+# In[6]:
+
+
+np.save('../app/data/images', img_train)
+np.save('../app/data/labels', lbl_train)
+
+
+# In[7]:
 
 
 plt.imshow(img_train[257], cmap='gray')
 print(lbl_train[257])
 
 
-# In[16]:
+# In[8]:
 
 
 print("Reshaping")
@@ -87,14 +94,14 @@ img_train = img_train.reshape(img_train.shape[0], img_train.shape[1], img_train.
 img_test = img_test.reshape(img_test.shape[0], img_test.shape[1], img_test.shape[2], 1)
 
 
-# In[18]:
+# In[9]:
 
 
 print("Train shape", img_train.shape)
 print("Test shape", img_test.shape)
 
 
-# In[ ]:
+# In[10]:
 
 
 #print("Changing lables to categorical")
@@ -102,14 +109,14 @@ print("Test shape", img_test.shape)
 #lbl_test = to_categorical(lbl_test, 31)
 
 
-# In[19]:
+# In[11]:
 
 
 print(lbl_train[472])
 plt.imshow(img_train[472], cmap='gray')
 
 
-# In[21]:
+# In[12]:
 
 
 print("Converting to binary")
@@ -117,7 +124,7 @@ img_train = img_train / 255
 img_test = img_test / 255
 
 
-# In[25]:
+# In[13]:
 
 
 print("Convering to float32")
@@ -125,7 +132,7 @@ img_train = img_train.astype('float32')
 img_test = img_test.astype('float32')
 
 
-# In[32]:
+# In[23]:
 
 
 epochs = 25
@@ -135,7 +142,7 @@ print("Epochs : ",epochs)
 print("Batch size : ",batch)
 
 
-# In[33]:
+# In[24]:
 
 
 model = Sequential()
@@ -149,19 +156,19 @@ model.add(Conv2D(1024, kernel_size=5, activation='relu'))
 model.add(MaxPool2D(pool_size=2))
 model.add(Dropout(0.3))
 model.add(Flatten())
-#model.add(Dense(128, activation='relu'))
+model.add(Dense(128, activation='relu'))
 model.add(Dense(256, activation='relu'))
 model.add(Dense(31, activation='softmax'))
 
 
-# In[34]:
+# In[25]:
 
 
 model.compile(optimizer=tensorflow.keras.optimizers.Adadelta(learning_rate=0.1),
              loss=tensorflow.keras.losses.sparse_categorical_crossentropy, metrics=['accuracy'])
 
 
-# In[35]:
+# In[26]:
 
 
 print("Training....")
@@ -179,6 +186,7 @@ score = model.evaluate(img_test, lbl_test)
 
 print('Loss : ', score[0])
 print('Accuracy :',score[1])
+print(model.summary()) 
 
 
 # In[ ]:

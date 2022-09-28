@@ -8,7 +8,7 @@
   <div class="nav__list">
     <ul>
       <li><a href="/">Home</a> </li>
-      <li><a href="#">About</a></li>
+      <li><a href="/about">About</a></li>
       <li><a href="https://github.com/Miyunn/Sinhala-Alphabet-Practice">Project</a></li>
     </ul>
   </div>
@@ -20,39 +20,39 @@
 </header>
 
 <div class="container">
-<div class="menu">
-  <h2 class="title">Practice</h2>
-  
-  {% if correct %}
-    {% if correct == 'yes' %}
-      <p style="font-size: 3rem;">✔</p>
-      
-    {% else %}
-      <p style="font-size: 3rem;">❌</p>  
-  
-    {% endif %}
-    {% endif %}
+  <div class="menu">
+    <h2 class="title">Practice</h2>
     
-  <p>Next question</p>
-  <div>
-    <canvas id="canvas" width="200" height="200"></canvas>
-  </div>
-  
-  <div>
-    <p style="margin-top: 0.5rem;">Write letter</p>
-    <p style="font-size: 3rem; text-align: center;"> "{{letter}}"</p>
-  </div>
-  
-  <div>
-    <form id="practice-form" action="practice" method="POST">
-      <input id="pixels" name="pixels" type="hidden" />
-      <input id="letter" name="letter" type="hidden" value="{{letter}}" />
-      <button type="button" class="button is-success" onclick="practiceAction()">check my answer</button>
-      <button type="button" class="button is-info" onclick="resetCanvas()">clear</button>
-    </form>
-  </div>
+    {% if correct %}
+      {% if correct == 'yes' %}
+        <p style="font-size: 3rem;">✔</p>
+        
+      {% else %}
+        <p style="font-size: 3rem;">❌</p>  
+    
+      {% endif %}
+      {% endif %}
+      
+    <p>Next question</p>
+    <div>
+      <canvas id="canvas" width="200" height="200"></canvas>
+    </div>
+    
+    <div>
+      <p style="margin-top: 0.5rem;">Write letter</p>
+      <p style="font-size: 3rem; text-align: center;"> "{{letter}}"</p>
+    </div>
+    
+    <div>
+      <form id="practice-form" action="practice" method="POST">
+        <input id="pixels" name="pixels" type="hidden" />
+        <input id="letter" name="letter" type="hidden" value="{{letter}}" />
+        <button type="button" class="button is-success" onclick="practiceAction()">check my answer</button>
+        <button type="button" class="button is-info" onclick="resetCanvas()">clear</button>
+      </form>
+    </div>
 
-</div>
+  </div>
 </div>
 
 <footer>
