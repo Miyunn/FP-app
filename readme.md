@@ -1,4 +1,4 @@
-# Practice Sinhala Alphabet (Using Convolutional neural network)
+# Practice Sinhala Alphabet (Using Convolutional neural networks)
 
 by Kavinthe Perera
 
