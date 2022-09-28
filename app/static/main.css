@@ -104,6 +104,24 @@ header{
     transition: 500ms;
 }
 
+.btn__check{
+    margin-top: 0.25rem;
+    width: 200px;
+    height: 30px;
+    background: #B578F1;
+    border-radius: 15px;
+    color: white;
+}
+
+.btn__clear{
+    margin-top: 1rem;
+    width: 150px;
+    height: 30px;
+    background: #A9A9A9;
+    border-radius: 15px;
+    color: white;
+}
+
 .error{
     display: block;
     margin-left: auto;

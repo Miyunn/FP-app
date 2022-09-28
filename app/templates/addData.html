@@ -4,17 +4,21 @@
   <div class="container">
     <div class="menu">
         <a href="/" class="button is-text">&lt; return to main menu</a>
-      </div>
-      <h1 class="title">add data to the model</h1>
+    </div>
+      
+    <h1 class="title">add data to the model</h1>
+      
       <div>
         <canvas id="canvas" width="200" height="200"></canvas>
       </div>
+      
       <div style="padding: 1rem;">
         {% if message %}
           <p style="font-size: 0.75rem;">{{message}}</p>
         {% endif %}
-        <p style="margin-top: 0.5rem;">Write an uppercase "{{letter.lower()}}"</p>
+        <p style="margin-top: 0.5rem;">Write an uppercase "{{letter}}"</p>
       </div>
+      
       <div>
         <form id="add-data-form" action="add-data" method="POST">
           <input id="pixels" name="pixels" type="hidden" />
@@ -22,9 +26,10 @@
           <button type="button" class="button is-success" onclick="addDataAction()">add data</button>
           <button type="button" class="button is-info" onclick="resetCanvas()">clear</button>
         </form>
+      </div>
+
     </div>
-    </div>
-    <div>
+  <div>
 
   </div>
   
