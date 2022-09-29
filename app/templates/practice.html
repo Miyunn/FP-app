@@ -23,6 +23,16 @@
   <div class="menu">
     <h2 class="title">Practice</h2>
     
+    <p>Next question</p>
+    <div>
+      <p style="margin-top: 0.5rem;">Write letter</p>
+      <p style="font-size: 3rem; text-align: center;"> "{{letter}}"</p>
+    </div>
+    
+    <div>
+      <canvas id="canvas" width="200" height="200"></canvas>
+    </div>
+    
     {% if correct %}
       {% if correct == 'yes' %}
         <p style="font-size: 3rem;">✔</p>
@@ -33,15 +43,6 @@
       {% endif %}
       {% endif %}
       
-    <p>Next question</p>
-    <div>
-      <canvas id="canvas" width="200" height="200"></canvas>
-    </div>
-    
-    <div>
-      <p style="margin-top: 0.5rem;">Write letter</p>
-      <p style="font-size: 3rem; text-align: center;"> "{{letter}}"</p>
-    </div>
     
     <div>
       <form id="practice-form" action="practice" method="POST">

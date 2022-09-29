@@ -1,9 +1,9 @@
-import numpy as np
-from bidict import bidict
 from flask import (
     Flask, render_template, request,
     redirect, url_for, session
 )
+import numpy as np
+from bidict import bidict
 from random import choice
 from tensorflow import keras
 
@@ -33,13 +33,6 @@ def about():
 @app.route('/add-data', methods=['GET'])
 def add_data_get():
     message = session.get('message', '')
-    
-    # labels = np.load('data/labels.npy')
-    # count = {k: 0 for k in ENCODER.keys()}
-    # for label in labels:
-    #     count[label] += 1
-    # count = sorted(count.items(), key=lambda x: x[1])
-    # letter = count[0][0]
 
     letter = choice(list(ENCODER.keys()))
     

@@ -132,17 +132,17 @@ img_train = img_train.astype('float32')
 img_test = img_test.astype('float32')
 
 
-# In[23]:
+# In[14]:
 
 
-epochs = 25
+epochs = 10
 batch = 1
 
 print("Epochs : ",epochs)
 print("Batch size : ",batch)
 
 
-# In[24]:
+# In[18]:
 
 
 model = Sequential()
@@ -161,14 +161,14 @@ model.add(Dense(256, activation='relu'))
 model.add(Dense(31, activation='softmax'))
 
 
-# In[25]:
+# In[20]:
 
 
-model.compile(optimizer=tensorflow.keras.optimizers.Adadelta(learning_rate=0.1),
+model.compile(optimizer=tensorflow.keras.optimizers.Adadelta(learning_rate=1.0, rho=0.95, epsilon=1e-08, decay=0.0),
              loss=tensorflow.keras.losses.sparse_categorical_crossentropy, metrics=['accuracy'])
 
 
-# In[26]:
+# In[21]:
 
 
 print("Training....")
