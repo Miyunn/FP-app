@@ -135,7 +135,7 @@ img_test = img_test.astype('float32')
 # In[14]:
 
 
-epochs = 10
+epochs = 25
 batch = 1
 
 print("Epochs : ",epochs)
