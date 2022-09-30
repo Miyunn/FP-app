@@ -1,42 +1,64 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <div class="container">
-    <div class="menu">
-        <a href="/" class="button is-text">&lt; return to main menu</a>
-    </div>
-      
-    <h1 class="title">add data to the model</h1>
-      
-      <div>
-        <canvas id="canvas" width="200" height="200"></canvas>
-      </div>
-      
-      <div style="padding: 1rem;">
-        {% if message %}
-          <p style="font-size: 0.75rem;">{{message}}</p>
-        {% endif %}
-        <p style="margin-top: 0.5rem;">Write an uppercase "{{letter}}"</p>
-      </div>
-      
-      <div>
-        <form id="add-data-form" action="add-data" method="POST">
-          <input id="pixels" name="pixels" type="hidden" />
-          <input id="letter" name="letter" type="hidden" value="{{letter}}" />
-          <button type="button" class="button is-success" onclick="addDataAction()">add data</button>
-          <button type="button" class="button is-info" onclick="resetCanvas()">clear</button>
-        </form>
-      </div>
-
-    </div>
+<header>
   <div>
+    <img class="nav__icon" src="{{ url_for('static', filename='icon.png') }}" alt="Icon">
+  </div>
+  <div class="nav__list">
+    <ul>
+      <li><a href="/">Home</a> </li>
+      <li><a href="/about">About</a></li>
+      <li><a href="https://github.com/Miyunn/Sinhala-Alphabet-Practice">Project</a></li>
+    </ul>
+  </div>
+  <div>
+    <a href="/">
+      <img class="nav__icon" src="{{ url_for('static', filename='back.png') }}" alt="Icon">
+    </a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="menu">
+    <h2 class="title">Practice</h2>
+    
+    <p>Next question</p>
+    <div>
+      <p style="margin-top: 0.5rem;">Write letter</p>
+      <p style="font-size: 3rem; text-align: center;"> "{{letter}}"</p>
+    </div>
+    
+    <div>
+      <canvas id="canvas" width="200" height="200"></canvas>
+    </div>
+    
+    {% if message %}
+      <p style="font-size: 0.75rem;">{{message}}</p>
+    {% endif %}
+      
+    
+    <div>
+      <form id="add-data-form" action="add-data" method="POST">
+        <input id="pixels" name="pixels" type="hidden" />
+        <input id="letter" name="letter" type="hidden" value="{{letter}}" />
+        <button type="button" class="btn__check" onclick="addDataAction()">add data</button> 
+        <br>
+        <button type="button" class="btn__clear" onclick="resetCanvas()">clear</button>
+      </form>
+    </div>
 
   </div>
-  
-  <script>
-    $(document).ready(function() {
-      startCanvas()
-    })
-  </script>
+</div>
+
+<footer>
+  <p>Desgined by Kavinthe Perera</p>
+</footer>
+
+<script>
+  $(document).ready(function() {
+    startCanvas()
+  })
+</script>
 
 {% endblock %}

@@ -111,12 +111,14 @@ header{
     background: #B578F1;
     border-radius: 15px;
     color: white;
+    cursor: pointer;
 }
 
 .btn__clear{
     margin-top: 1rem;
     width: 150px;
     height: 30px;
+    cursor: pointer;
     background: #A9A9A9;
     border-radius: 15px;
     color: white;

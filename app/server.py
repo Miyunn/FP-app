@@ -9,7 +9,7 @@ from tensorflow import keras
 
 
 ENCODER = bidict({
-    'අ': 0, 'ආ': 1, 'ඇ': 2, 'ඈ':3, 'ඉ':4, 'ඊ':5, 'උ':6,
+    'අ':0, 'ආ':1, 'ඇ': 2, 'ඈ':3, 'ඉ':4, 'ඊ':5, 'උ':6,
     'එ':7, 'ඒ':8, 'ඔ':9, 'ඕ':10, 'ක':11, 'ග':12, 'ච':13, 
     'ජ':14, 'ට':15, 'ඩ':16, 'ණ':17, 'ත':18, 'ද':19, 'න':20,
     'ප':21, 'බ':22, 'ම':23, 'ය':24, 'ර':25, 'ල':26, 'ව':27,
@@ -33,6 +33,13 @@ def about():
 @app.route('/add-data', methods=['GET'])
 def add_data_get():
     message = session.get('message', '')
+    
+    # labels = np.load('data/labels.npy')
+    # count = {k: 0 for k in ENCODER.keys()}
+    # for label in labels:
+    #     count[label] += 1
+    # count = sorted(count.items(), key=lambda x: x[1])
+    # letter = count[0][0]
 
     letter = choice(list(ENCODER.keys()))
     
@@ -43,7 +50,8 @@ def add_data_post():
 
     label = request.form['letter']
     labels = np.load('data/labels.npy')
-    labels = np.append(labels, label)
+    add_label = ENCODER[label]
+    labels = np.append(labels, add_label)
     np.save('data/labels.npy', labels)
 
     pixels = request.form['pixels']
