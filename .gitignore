@@ -1,2 +1,4 @@
 model.h5
 images.npy
+labels.npy
+size.npy
