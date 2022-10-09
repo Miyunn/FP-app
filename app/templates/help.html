@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<header>
+  <div>
+    <img class="nav__icon" src="{{ url_for('static', filename='icon.png') }}" alt="Icon">
+  </div>
+  <div class="nav__list">
+    <ul>
+      <li><a href="/">Home</a> </li>
+      <li><a href="/about">About</a></li>
+      <li><a href="https://github.com/Miyunn/Sinhala-Alphabet-Practice">Project</a></li>
+    </ul>
+</div>
+<div>
+    <a href="/">
+        <img class="nav__icon" src="{{ url_for('static', filename='back.png') }}" alt="Icon">
+    </a>
+</div>
+</header>
+
+<div class="container">
+    <div class="menu">
+        <div class="help">
+            <div class="title">
+              <h2>How to Use</h2>
+            </div>
+            <img src="{{ url_for('static', filename='help.png') }}" alt="Error!">
+        </div>
+    </div>
+</div>
+        
+        
+<footer>
+  <p>Desgined by Kavinthe Perera</p>
+</footer>
+
+{% endblock %}

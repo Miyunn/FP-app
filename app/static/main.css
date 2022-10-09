@@ -75,7 +75,7 @@ header{
     transition: 300ms;
 }
 
-.btn__improve{
+.btn__help{
     margin-top: 3rem;
     align-items: center;
     text-align: center;
@@ -83,7 +83,21 @@ header{
     color: #BDBDBD;
 }
 
+.btn__improve{
+    margin-top: 1rem;
+    align-items: center;
+    text-align: center;
+    
+    color: #BDBDBD;
+}
+
 .btn__improve p:hover {
+    color: #00ffff;
+    transition: 300ms;
+}
+
+
+.btn__help p:hover {
     color: #00ffff;
     transition: 300ms;
 }
@@ -166,9 +180,28 @@ footer{
 }
 
 @media screen and (max-width: 700px) {
+    header{
+        padding: 0 2rem;
+    }
+    .btn_practice{
+        margin-top: 3rem;
+        width: 400px;
+        background: #B578F1;
+        border-radius: 146px;
+        text-align: center;
+    }
 
   }
   
 @media screen and (max-width: 550px) {
 
+    header{
+        padding: 0 1rem;
+    }
+
+    .nav__list li{
+        display: none;
+
+    }
+    
   }
