@@ -23,9 +23,9 @@ by Kavinthe Perera
 
 ### Updating model
 1. Open directory data
-2. Run either update.py or update.ipynb (if notebook installed)
+2. Run update script from command `python update.py`
 
-### Model Specs
-
+### Base Model Specs
+Below values are generated at 30 epochs
 Loss :  0.2780703274359883
 Accuracy : 0.9447674
