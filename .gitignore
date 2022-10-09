@@ -1,4 +1,4 @@
-./venv
+/venv
 model.h5
 images.npy
 labels.npy
