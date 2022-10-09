@@ -22,7 +22,7 @@ by Kavinthe Perera
 5. Run command `python server.py` to start flask server
 
 ### Updating model
-1. Open directory data
+1. Navigate to data directory
 2. Run update script from command `python update.py`
 
 ### Base Model Specs
