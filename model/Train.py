@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[16]:
-
-
 import tensorflow.keras
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPool2D, Flatten, Dense, Dropout
@@ -14,26 +8,25 @@ import cv2
 import os
 
 
-# In[17]:
+# In[2]:
 
+
+print("Importing data from directory...")
 
 path = "dataset/train/"
 path_test = "dataset/test/"
 files = os.listdir(path)[:31]
 files_test = os.listdir(path_test)[:31]
-#print("Detected train classes : ",files)
-#print("Detected test classes : ",files_test)
-print("Detected classes : ",files)
 
 classes={'1':0, '2':1, '3':2, '4':3, '5':4, '6':5, '7':6, '8':7, '9':8, '10':9, '11':10, '12':11, '25':12, '38':13, '51':14,
         '64':15, '77':16, '90':17, '93':18, '105':19, '120':20, '134':21, '149':22, '164':23, '179':24, '190':25, '198':26,
         '208':27, '250':28, '264':29, '274':30 }
 
 
-# In[18]:
+# In[3]:
 
 
-print("Importing train data...")
+print("Labeling train data...")
 img_train=[]
 lbl_train=[]
 
@@ -45,10 +38,10 @@ for cl in classes:
         lbl_train.append(classes[cl])
 
 
-# In[19]:
+# In[4]:
 
 
-print("Importing test data...")
+print("Labeling test data...")
 img_test=[]
 lbl_test=[]
 
@@ -60,7 +53,7 @@ for cl in classes:
         lbl_test.append(classes[cl])
 
 
-# In[20]:
+# In[5]:
 
 
 print("converting to np array")
@@ -71,90 +64,82 @@ lbl_train = np.array(lbl_train)
 img_test = np.array(img_test)
 lbl_test = np.array(lbl_test)
 
+save_size = lbl_train.size
 
-# In[21]:
-
-
-np.save('../app/data/images', img_train)
-np.save('../app/data/labels', lbl_train)
-
-print("Saved processed images ")
+print(save_size)
 
 
-# In[22]:
+# In[6]:
 
 
-plt.imshow(img_train[257], cmap='gray')
-print(lbl_train[257])
+np.save('../data/images', img_train)
+np.save('../data/labels', lbl_train)
+np.save('../data/size', save_size)
+print("Saved for updating")
 
 
-# In[23]:
+# In[7]:
 
 
-print("Reshaping")
+plt.imshow(img_train[1], cmap='gray')
+print(lbl_train[1])
+
+
+# In[8]:
+
+
+print("Preprocessing data for training....")
+
+
+# In[9]:
+
+
 img_train = img_train.reshape(img_train.shape[0], img_train.shape[1], img_train.shape[2], 1)
 img_test = img_test.reshape(img_test.shape[0], img_test.shape[1], img_test.shape[2], 1)
 
 
-# In[24]:
+# In[10]:
+
+
+img_train = img_train / 255
+img_test = img_test / 255
+
+
+# In[11]:
+
+
+img_train = img_train.astype('float32')
+img_test = img_test.astype('float32')
+
+
+# In[12]:
 
 
 print("Train shape", img_train.shape)
 print("Test shape", img_test.shape)
 
 
-# In[25]:
-
-
-#print("Changing lables to categorical")
-#lbl_train = to_categorical(lbl_train, 31)
-#lbl_test = to_categorical(lbl_test, 31)
-
-
-# In[26]:
-
-
-print(lbl_train[2346])
-plt.imshow(img_train[2346], cmap='gray')
-
-
-# In[27]:
-
-
-print("Converting to binary")
-img_train = img_train / 255
-img_test = img_test / 255
-
-
-# In[28]:
-
-
-print("Convering to float32")
-img_train = img_train.astype('float32')
-img_test = img_test.astype('float32')
-
-
-# In[29]:
+# In[13]:
 
 
 epochs = 30
-batch = 32
+batch = 16
 
 print("Epochs : ",epochs)
 print("Batch size : ",batch)
 
 
-# In[33]:
+# In[14]:
 
 
 model = Sequential()
+model.add(Conv2D(64, kernel_size=5, activation='relu'))
+model.add(MaxPool2D(pool_size=2))
+model.add(Dropout(0.3))
+model.add(Conv2D(128, kernel_size=5, activation='relu'))
+model.add(MaxPool2D(pool_size=2))
+model.add(Dropout(0.3))
 model.add(Conv2D(256, kernel_size=5, activation='relu'))
-model.add(MaxPool2D(pool_size=2))
-model.add(Dropout(0.3))
-model.add(Conv2D(512, kernel_size=5, activation='relu'))
-model.add(MaxPool2D(pool_size=2))
-model.add(Dropout(0.3))
-model.add(Conv2D(1024, kernel_size=5, activation='relu'))
 model.add(MaxPool2D(pool_size=2))
 model.add(Dropout(0.3))
 model.add(Flatten())
@@ -163,14 +148,14 @@ model.add(Dense(256, activation='relu'))
 model.add(Dense(31, activation='softmax'))
 
 
-# In[35]:
+# In[15]:
 
 
 model.compile(optimizer=tensorflow.keras.optimizers.Adam(learning_rate=0.001),
              loss=tensorflow.keras.losses.sparse_categorical_crossentropy, metrics=['accuracy'])
 
 
-# In[36]:
+# In[16]:
 
 
 print("Training....")
@@ -186,9 +171,9 @@ score = model.evaluate(img_test, lbl_test)
 # In[ ]:
 
 
+print(model.summary()) 
 print('Loss : ', score[0])
 print('Accuracy :',score[1])
-print(model.summary()) 
 
 
 # In[ ]:

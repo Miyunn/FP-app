@@ -3,7 +3,6 @@
 by Kavinthe Perera
 
 **Note : This repository does not include the model file, the model needs to be trained before locally running application**
-**Recomended to run training on GPU**
 
 ### Required python libraries
 
@@ -28,4 +27,5 @@ by Kavinthe Perera
 
 ### Model Specs
 
-- To be added
+Loss :  0.2780703274359883
+Accuracy : 0.9447674
