@@ -2,11 +2,11 @@ from flask import (
     Flask, render_template, request,
     redirect, url_for, session
 )
+
 import numpy as np
 from bidict import bidict
 from random import choice
 from tensorflow import keras
-
 
 ENCODER = bidict({
     'අ':0, 'ආ':1, 'ඇ': 2, 'ඈ':3, 'ඉ':4, 'ඊ':5, 'උ':6,
@@ -16,10 +16,8 @@ ENCODER = bidict({
     'ස':28, 'හ':29, 'ළ':30
 })
 
-
 app = Flask(__name__)
 app.secret_key = 'sinhala_alphabet_practice'
-
 
 @app.route('/')
 def index():
@@ -43,7 +41,6 @@ def add_data_get():
 
 @app.route('/add-data', methods=['POST'])
 def add_data_post():
-
     try:
         label = request.form['letter']
         labels = np.load('data/labels.npy')
@@ -95,4 +92,5 @@ def practice_post():
         return render_template('error.html')
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0')
+    app.run(debug=True)
+    #app.run(host = '0.0.0.0')

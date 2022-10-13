@@ -122,8 +122,8 @@ print("Test shape", img_test.shape)
 # In[13]:
 
 
-epochs = 30
-batch = 16
+epochs = 50
+batch = 32
 
 print("Epochs : ",epochs)
 print("Batch size : ",batch)
@@ -148,35 +148,20 @@ model.add(Dense(256, activation='relu'))
 model.add(Dense(31, activation='softmax'))
 
 
-# In[15]:
-
-
 model.compile(optimizer=tensorflow.keras.optimizers.Adam(learning_rate=0.001),
-             loss=tensorflow.keras.losses.sparse_categorical_crossentropy, metrics=['accuracy'])
-
-
-# In[16]:
-
+             loss=tensorflow.keras.losses.sparse_categorical_crossentropy, 
+             metrics=['accuracy'])
 
 print("Training....")
-model.fit(img_train, lbl_train, epochs=epochs, batch_size=batch, validation_data=(img_test, lbl_test))
-
-
-# In[ ]:
+model.fit(img_train, lbl_train, epochs=epochs, batch_size=batch, 
+        validation_data=(img_test, lbl_test))
 
 
 score = model.evaluate(img_test, lbl_test)
 
-
-# In[ ]:
-
-
 print(model.summary()) 
 print('Loss : ', score[0])
 print('Accuracy :',score[1])
-
-
-# In[ ]:
 
 
 model.save('../model.h5')
