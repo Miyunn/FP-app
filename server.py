@@ -91,6 +91,31 @@ def practice_post():
         print(e)
         return render_template('error.html')
 
+@app.route('/guess', methods=['GET'])
+def guess_get():
+    return render_template("guess.html", letter='')
+
+@app.route('/guess', methods=['POST'])
+def guess_post():
+    try:
+        letter = request.form['letter']
+
+        pixels = request.form['pixels']
+        pixels = pixels.split(',')
+        img = np.array(pixels).astype(float).reshape(1, 50, 50, 1)
+
+        model = keras.models.load_model('model.h5')
+
+        pred_letter = np.argmax(model.predict(img), axis=-1)
+        pred_letter = ENCODER.inverse[pred_letter[0]]
+
+
+        return render_template("guess.html", letter=pred_letter)
+
+    except Exception as e:
+        print(e)
+        return render_template('error.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
     #app.run(host = '0.0.0.0')

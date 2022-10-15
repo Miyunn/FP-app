@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif;
     list-style: none;
 }
-
+  
 body {
     background: #000
 }
@@ -67,20 +67,45 @@ header{
     background: #B578F1;
     border-radius: 146px;
     text-align: center;
+    transition: 500ms;
+}
+
+.btn_guess{
+    margin-top: 3rem;
+    width: 464px;
+    padding: 0.75rem;
+    background: #78c5f1;
+    border-radius: 146px;
+    text-align: center;
+    transition: 300ms;
 }
 
 .btn_practice:hover{
     background: #fff;
     color: #1D1D1D;
+    transition: 500ms;
+    padding: 1.5rem;
+}
+
+.btn_guess:hover{
+    background: #fff;
+    color: #1D1D1D;
     transition: 300ms;
+    padding: 1.5rem;
 }
 
 .btn__help{
     margin-top: 3rem;
     align-items: center;
     text-align: center;
+    transition: 300ms;
     
     color: #BDBDBD;
+}
+
+.btn__help:hover{
+    font-weight: bold;
+    transition: 500ms;
 }
 
 .btn__improve{
