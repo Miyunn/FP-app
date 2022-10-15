@@ -80,8 +80,7 @@ def practice_post():
         model = keras.models.load_model('model.h5')
 
         pred_letter = np.argmax(model.predict(img), axis=-1)
-        pred_letter = ENCODER.inverse[pred_letter[0]]
-
+    
         correct = 'yes' if pred_letter == letter else 'no'
         letter = choice(list(ENCODER.keys()))
 
@@ -99,7 +98,6 @@ def guess_get():
 def guess_post():
     try:
         letter = request.form['letter']
-
         pixels = request.form['pixels']
         pixels = pixels.split(',')
         img = np.array(pixels).astype(float).reshape(1, 50, 50, 1)
@@ -108,7 +106,6 @@ def guess_post():
 
         pred_letter = np.argmax(model.predict(img), axis=-1)
         pred_letter = ENCODER.inverse[pred_letter[0]]
-
 
         return render_template("guess.html", letter=pred_letter)
 
