@@ -80,7 +80,8 @@ def practice_post():
         model = keras.models.load_model('model.h5')
 
         pred_letter = np.argmax(model.predict(img), axis=-1)
-    
+        pred_letter = ENCODER.inverse[pred_letter[0]]
+
         correct = 'yes' if pred_letter == letter else 'no'
         letter = choice(list(ENCODER.keys()))
 
