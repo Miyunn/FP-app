@@ -55,7 +55,7 @@ def add_data_post():
         imgs = np.vstack([imgs, img])
         np.save('data/images.npy', imgs)
 
-        session['message'] = f'"{label}" added to the training dataset'
+        session['message'] = f'"{label}" Added to the dataset'
 
         return redirect(url_for('add_data_get'))
 
@@ -116,7 +116,6 @@ def guess_post():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
 if __name__ == '__main__':

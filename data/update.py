@@ -21,7 +21,8 @@ print("New data found : ", new_data_size)
 if new_data_size!=0:
     
     print("Pre-processing data for training")
-    img_train, img_test, lbl_train, lbl_test = train_test_split(img, lbl, random_state=0, train_size = .75)
+    img_train, img_test, lbl_train, lbl_test = train_test_split(img, lbl, 
+    random_state=0, train_size = .75)
     
     img_train = img_train / 255
     img_test = img_test / 255

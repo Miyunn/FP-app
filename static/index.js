@@ -65,16 +65,17 @@ function addClick(x, y, dragging) {
   clickDrag.push(dragging)
 }
 
-function clearCanvas() {
-  context.clearRect(0, 0, 200, 200)
-}
-
 function resetCanvas() {
   clickX = []
   clickY = []
   clickDrag = []
   clearCanvas()
 }
+
+function clearCanvas() {
+  context.clearRect(0, 0, 200, 200)
+}
+
 
 function drawCanvas() {
   clearCanvas()
@@ -122,3 +123,4 @@ function practiceAction() {
 
   document.getElementById("practice-form").submit()
 }
+

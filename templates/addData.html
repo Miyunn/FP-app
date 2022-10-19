@@ -21,9 +21,8 @@
 
 <div class="container">
   <div class="menu">
-    <h2 class="title">Practice</h2>
+    <h3 class="title">Help us improve the model with your handwritting</h3>
     
-    <p>Next question</p>
     <div>
       <p style="margin-top: 0.5rem;">Write letter</p>
       <p style="font-size: 3rem; text-align: center;"> "{{letter}}"</p>
@@ -42,9 +41,9 @@
       <form id="add-data-form" action="add-data" method="POST">
         <input id="pixels" name="pixels" type="hidden" />
         <input id="letter" name="letter" type="hidden" value="{{letter}}" />
-        <button type="button" class="btn__check" onclick="addDataAction()">add data</button> 
+        <button type="button" class="btn__check" onclick="addDataAction()">Add Data</button> 
         <br>
-        <button type="button" class="btn__clear" onclick="resetCanvas()">clear</button>
+        <button type="button" class="btn__clear" onclick="resetCanvas()">Clear Canvas</button>
       </form>
     </div>
 
