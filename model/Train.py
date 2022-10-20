@@ -1,4 +1,11 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
 import tensorflow.keras
+import pandas as pd
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPool2D, Flatten, Dense, Dropout
 from tensorflow.keras.utils import to_categorical
@@ -122,7 +129,7 @@ print("Test shape", img_test.shape)
 # In[13]:
 
 
-epochs = 50
+epochs = 100
 batch = 32
 
 print("Epochs : ",epochs)
@@ -148,20 +155,32 @@ model.add(Dense(256, activation='relu'))
 model.add(Dense(31, activation='softmax'))
 
 
+# In[15]:
+
+
 model.compile(optimizer=tensorflow.keras.optimizers.Adam(learning_rate=0.001),
-             loss=tensorflow.keras.losses.sparse_categorical_crossentropy, 
-             metrics=['accuracy'])
+             loss=tensorflow.keras.losses.sparse_categorical_crossentropy, metrics=['accuracy'])
+
+
+# In[16]:
+
 
 print("Training....")
-model.fit(img_train, lbl_train, epochs=epochs, batch_size=batch, 
-        validation_data=(img_test, lbl_test))
+acc = model.fit(img_train, lbl_train, epochs=epochs, batch_size=batch, validation_data=(img_test, lbl_test))
+
+
+# In[17]:
 
 
 score = model.evaluate(img_test, lbl_test)
 
+
 print(model.summary()) 
 print('Loss : ', score[0])
 print('Accuracy :',score[1])
+
+
+# In[20]:
 
 
 model.save('../model.h5')
