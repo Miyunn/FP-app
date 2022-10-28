@@ -103,11 +103,6 @@ header{
     color: #BDBDBD;
 }
 
-.btn__help:hover{
-    font-weight: bold;
-    transition: 500ms;
-}
-
 .btn__improve{
     margin-top: 1rem;
     align-items: center;
